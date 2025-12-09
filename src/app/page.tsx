@@ -41,7 +41,7 @@ const formatLegendValue = (value?: number) => `${formatMillions(value)} tons`;
 
 const nationalTotalLabel = formatLegendValue(nationalTotals.annualTons);
 
-const statesTopology = states as Topology;
+const statesTopology = states as unknown as Topology;
 
 const statesFeatureCollection = feature(
   statesTopology,
