@@ -55,7 +55,7 @@ const stateFeatures = statesFeatureCollection.features as Feature<
 
 const borders = mesh(
   statesTopology,
-  statesTopology.objects.states,
+  statesTopology.objects.states as any,
   (a, b) => a !== b,
 ) as MultiLineString;
 
