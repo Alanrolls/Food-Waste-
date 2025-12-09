@@ -63,10 +63,23 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return NextResponse.json(
-      { error: "OPENAI_API_KEY is not configured on the server." },
-      { status: 500 },
-    );
+    const topStates = [...datasetContext]
+      .sort((a, b) => b.annualTons - a.annualTons)
+      .slice(0, 3);
+
+    return NextResponse.json({
+      summary: "Offline mode: showing leading surplus states while AI is disabled.",
+      criteria: `Sample insight for "${query.trim()}" (OpenAI API key not set).`,
+      highlightedStates: topStates.map((state) => ({
+        code: state.code,
+        reason: `${state.name} ~${state.annualTons.toFixed(1)}M tons annually`,
+      })),
+      suggestedNextQuestions: [
+        "Compare the Northeast to the West Coast",
+        "Show states below 1.5M tons",
+        "Which regions impact the most households?",
+      ],
+    });
   }
 
   const client = new OpenAI({ apiKey });

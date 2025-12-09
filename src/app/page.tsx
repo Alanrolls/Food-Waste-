@@ -67,7 +67,7 @@ const [minValue, maxValue] = extent(wasteValues) as [number, number];
 
 const colorScale = scaleQuantize<string>()
   .domain([minValue, maxValue])
-  .range(["#fff5eb", "#fdc074", "#f7944d", "#e2542e", "#99201b"]);
+  .range(["#f4e1c7", "#f0b35a", "#e27a35", "#c84a2b", "#7f1b16"]);
 
 const legendItems = colorScale.range().map((color) => {
   const [from, to] = colorScale.invertExtent(color);
@@ -373,7 +373,7 @@ export default function Home() {
                   d={d}
                   className={className}
                   fill={fill}
-                  stroke="#f5f6fa"
+                  stroke="#e1e4ec"
                   strokeWidth={isHighlighted ? 1.2 : 0.6}
                   onPointerMove={(event) => stats && handlePointerMove(event, stats)}
                   onPointerLeave={() => setHoveredState(null)}
@@ -392,7 +392,7 @@ export default function Home() {
                 fill="none"
                 stroke="#1a202c"
                 strokeWidth={0.4}
-                opacity={0.4}
+                opacity={0.55}
               />
             )}
           </svg>
